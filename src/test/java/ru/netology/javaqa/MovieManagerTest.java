@@ -77,4 +77,55 @@ public class MovieManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+    
+
+    @Test
+    public void testFindLastAboveTheLimit() {
+        MovieManager manager = new MovieManager(4);
+        manager.add("Film I");
+        manager.add("Film II");
+        manager.add("Film III");
+        manager.add("Film IV");
+        manager.add("Film V");
+        manager.add("Film VI");
+
+
+        String[] expected = {"Film VI", "Film V", "Film IV", "Film III"};
+        String[] actual = manager.findLast();
+
+       Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testFindLastBelowTheLimit() {
+        MovieManager manager = new MovieManager(6);
+        manager.add("Film I");
+        manager.add("Film II");
+        manager.add("Film III");
+        manager.add("Film IV");
+
+
+        String[] expected = {"Film IV", "Film III", "Film II", "Film I"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testFindLastEqualToTheLimit() {
+        MovieManager manager = new MovieManager(6);
+        manager.add("Film I");
+        manager.add("Film II");
+        manager.add("Film III");
+        manager.add("Film IV");
+        manager.add("Film V");
+        manager.add("Film VI");
+
+
+        String[] expected = {"Film VI", "Film V", "Film IV", "Film III", "Film II", "Film I"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
